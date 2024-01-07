@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class AuthenticationController {
 
     @GetMapping("/register")
-    public String showRegistrationForm(model model) {
-        model.addAttribution("user", new User());
+    public String showRegistrationForm() {
+//        model.addAttribution("user", new User());
 
         return "registration_form";
     }
