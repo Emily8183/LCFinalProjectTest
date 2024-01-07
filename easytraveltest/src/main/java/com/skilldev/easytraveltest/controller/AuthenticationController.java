@@ -29,7 +29,6 @@ public class AuthenticationController {
     public String processRegister(User newUser) {
 
         userRepository.save(newUser);
-//        return "redirect:/activites";
-        return "index";
+        return "register_success";
     }
 }
