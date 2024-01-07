@@ -10,6 +10,7 @@ public class User extends AbstractEntity{
     @NotNull
     private String username;
 
-
+    @NotNull
+    private String password;
 
 }
