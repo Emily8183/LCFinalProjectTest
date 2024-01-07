@@ -16,9 +16,11 @@
                     <div>
                         <!-- TODO: add field to connect with user input -->
                         <label th:for="username">Username</label>
-                        <input type="text" />
+                        <input type="text" th:field="${user.username}"/>
+
                         <label th:for="password">Password</label>
-                        <input type="password" />
+                        <input type="password" th:field="${user.password}"/>
+
                         <label th:for="verifypassword">Verify Password</label>
                         <input type="password" />
                     </div>

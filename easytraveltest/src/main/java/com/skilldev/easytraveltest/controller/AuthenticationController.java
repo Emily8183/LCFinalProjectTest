@@ -18,7 +18,6 @@ public class AuthenticationController {
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         //TODO: add PTO
-        //TODO: change the return to @PostMapping to activity page
 
         model.addAttribute("user", new User());
 
