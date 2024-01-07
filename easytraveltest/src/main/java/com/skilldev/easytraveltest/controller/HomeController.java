@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
 
-//    @GetMapping("/")
-//    public String redirectToHomePage() {
-//        return "redirect:/welcome";
-//    }
+    @GetMapping("/")
+    public String redirectToHomePage() {
+        return "redirect:/welcome";
+    }
 
 
     @GetMapping("/welcome")
@@ -18,5 +18,7 @@ public class HomeController {
         //model.addAttribute("headingText", "Welcome");
         return "index";
     }
+
+
 
 }

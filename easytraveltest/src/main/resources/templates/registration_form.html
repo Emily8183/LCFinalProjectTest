@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>easyTravel Registration Form</title>
+</head>
+<body>
+    <main>
+        <div>
+            <h1>User Registration -Sign Up</h1>
+        </div>
+
+        <form method="post" th:object="${user}">
+            <div>
+                <div>
+                    <div>
+                        <!-- TODO: add field to connect with user input -->
+                        <label th:for="username">Username</label>
+                        <input type="text" th:field="${user.username}"/>
+
+                        <label th:for="password">Password</label>
+                        <input type="password" th:field="${user.password}"/>
+
+                        <label th:for="verifypassword">Verify Password</label>
+                        <input type="password" />
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit">Register</button>
+        </form>
+    </main>
+
+</body>
+</html>
