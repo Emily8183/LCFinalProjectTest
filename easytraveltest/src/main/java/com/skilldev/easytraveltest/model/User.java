@@ -1,4 +1,9 @@
 package com.skilldev.easytraveltest.model;
 
-public class User {
+import jakarta.persistence.Entity;
+import org.antlr.v4.runtime.misc.NotNull;
+
+@Entity
+public class User extends AbstractEntity{
+
 }
