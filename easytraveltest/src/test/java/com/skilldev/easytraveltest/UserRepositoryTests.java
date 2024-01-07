@@ -2,6 +2,7 @@ package com.skilldev.easytraveltest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.skilldev.easytraveltest.model.User;
 import com.skilldev.easytraveltest.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,5 +21,18 @@ public class UserRepositoryTests {
 
     @Autowired
     private UserRepository repo;
+
+    @Test
+    public void testCreateUser() {
+        User user = new User();
+        user.setPassword("123456");
+        user.setFirstName("Emily");
+        user.setLastName("Lin");
+
+        User savedUser = repo.save(user);
+
+        User existUser = entityManager.find(User.class, savedUser.getId());
+        assertThat(user.getFirstName()).isEqualTo(existUser.getFirstName());
+    }
 
 }
