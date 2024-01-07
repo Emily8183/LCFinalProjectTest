@@ -13,7 +13,7 @@ public class User extends AbstractEntity{
     private String username;
 
     @NotNull
-    @Column
+    @Column(length = 64)
     private String password;
 
     @NotNull
