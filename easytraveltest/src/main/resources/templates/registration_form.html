@@ -5,24 +5,28 @@
     <title>easyTravel Registration Form</title>
 </head>
 <body>
-    <div>
-        <h1>User Registration -Sign Up</h1>
-    </div>
-
-    <form method="post">
+    <main>
         <div>
+            <h1>User Registration -Sign Up</h1>
+        </div>
+
+        <form method="post">
             <div>
                 <div>
-                    <label th:for="username">Username</label>
-                    <input type="text" />
-                    <label th:for="password">Password</label>
-                    <input type="password" />
-                    <label th:for="verifypassword">Verify Password</label>
-                    <input type="password" />
+                    <div>
+                        <label th:for="username">Username</label>
+                        <input type="text" />
+                        <label th:for="password">Password</label>
+                        <input type="password" />
+                        <label th:for="verifypassword">Verify Password</label>
+                        <input type="password" />
+                    </div>
                 </div>
             </div>
-        </div>
-    </form>
+
+            <button type="submit">Register</button>
+        </form>
+    </main>
 
 </body>
 </html>
