@@ -12,15 +12,29 @@ public class LoginFormDTO {
     @Size(min = 6, max = 30, message = "Password must be 6-30 characters long.")
     private String password;
 
-    @NotNull(message = "First Name is required")
-    @NotBlank(message = "First Name is required")
-    private String firstName;
+    //TODO: do I not put firstname and lastname here since it's DTO?
+//    @NotNull(message = "First Name is required")
+//    @NotBlank(message = "First Name is required")
+//    private String firstName;
+//
+//    @NotNull(message = "Last Name is required")
+//    @NotBlank(message = "Last Name is required")
+//    private String lastName;
 
-    @NotNull(message = "Last Name is required")
-    @NotBlank(message = "Last Name is required")
-    private String lastName;
 
+    public String getUsername() {
+        return username;
+    }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
+    public String getPassword() {
+        return password;
+    }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
