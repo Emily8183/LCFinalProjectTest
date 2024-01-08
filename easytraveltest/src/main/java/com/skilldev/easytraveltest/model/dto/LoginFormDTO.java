@@ -4,6 +4,8 @@ import jakarta.validation.constraints.NotBlank;
 
 public class LoginFormDTO {
 
+    //TODO: validation?
+
     @NotNull(message = "Username is required")
     @NotBlank(message = "Username is required")
     @Size(min = 3, max = 30, message = "Username must be 3-20 characters Long.")
