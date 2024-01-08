@@ -6,4 +6,12 @@ public class RegistrationFormDTO extends LoginFormDTO{
     @NotBlank(message = "Password is required")
     @Size(min = 6, max = 30, message = "Password must be 6-30 characters long.")
     private String verifyPassword;
+
+    public String getVerifyPassword() {
+        return verifyPassword;
+    }
+
+    public void setVerifyPassword(String verifyPassword) {
+        this.verifyPassword = verifyPassword;
+    }
 }
