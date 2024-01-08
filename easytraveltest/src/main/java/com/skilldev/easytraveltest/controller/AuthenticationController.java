@@ -20,14 +20,14 @@ public class AuthenticationController {
     public String showRegistrationForm(Model model) {
         //TODO: add PTO
 
-        model.addAttribute("user", new User());
+        model.addAttribute(new RegistrationFormDTO());
 
         return "registration_form";
     }
 
     @PostMapping("/register")
     public String processRegister(Model model) {
-        model.addAttribute(new RegistrationFormDTO());
+
 
         userRepository.save(newUser);
         return "register_success";
