@@ -1,6 +1,7 @@
 package com.skilldev.easytraveltest.controller;
 
 import com.skilldev.easytraveltest.model.User;
+import com.skilldev.easytraveltest.model.dto.RegistrationFormDTO;
 import com.skilldev.easytraveltest.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +26,8 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public String processRegister(User newUser) {
+    public String processRegister(Model model) {
+        model.addAttribute(new RegistrationFormDTO());
 
         userRepository.save(newUser);
         return "register_success";

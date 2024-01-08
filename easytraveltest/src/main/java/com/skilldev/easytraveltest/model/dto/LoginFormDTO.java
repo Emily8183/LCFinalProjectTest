@@ -1,5 +1,7 @@
 package com.skilldev.easytraveltest.model.dto;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class LoginFormDTO {
 
     @NotNull(message = "Username is required")
