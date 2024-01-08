@@ -16,6 +16,10 @@ public class LoginFormDTO {
     @NotBlank(message = "First Name is required")
     private String firstName;
 
+    @NotNull(message = "Last Name is required")
+    @NotBlank(message = "Last Name is required")
+    private String lastName;
+
 
 
 
