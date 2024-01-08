@@ -27,11 +27,11 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public String processRegister(@Valid RegistrationFormDTO registrationFormDTO){
+    public String processRegister(RegistrationFormDTO registrationFormDTO){
 
         User newUser = new User(
-                RegistrationFormDTO.getUsername(),
-                RegistrationFormDTO.getPassword()
+                registrationFormDTO.getUsername(),
+                registrationFormDTO.getPassword()
         );
 
         userRepository.save(newUser);

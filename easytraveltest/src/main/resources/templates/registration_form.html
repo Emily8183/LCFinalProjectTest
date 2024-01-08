@@ -16,7 +16,7 @@
                     <div>
                         <!-- TODO: can I use th:block here?-->
                         <label th:for="username">Username</label>
-                        <input type="text" th:field="${user.username}"/>
+                        <input type="text" th:field="${registrationFormDTO.username}"/>
 
 <!--                        <label th:for="firstName">First Name</label>-->
 <!--                        <input type="text" th:field="${user.firstName}"/>-->
@@ -25,7 +25,7 @@
 <!--                        <input type="text" th:field="${user.lastName}"/>-->
 
                         <label th:for="password">Password</label>
-                        <input type="password" th:field="${user.password}"/>
+                        <input type="password" th:field="${registrationFormDTO.password}"/>
 
                         <label th:for="verifypassword">Verify Password</label>
                         <input type="password" />

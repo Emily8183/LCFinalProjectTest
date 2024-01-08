@@ -2,21 +2,27 @@ package com.skilldev.easytraveltest.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import org.antlr.v4.runtime.misc.NotNull;
+//import jakarta.validation.constraints.NotNull;
+
 
 @Entity
 public class User extends AbstractEntity{
 
-    public User() {}
+//    @NotNull
+    private String username;
 
-//    @NotNull
-//    @Column(unique = true)
-//    private String username;
-//
-//    @NotNull
-//    @Column(length = 64)
-//    private String password;
-//
+    private String password;
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public User() {
+
+    }
+
+    //
 //    @NotNull
 //    @Column(name = "first_name", length = 20)
 //    private String firstName;
@@ -25,21 +31,21 @@ public class User extends AbstractEntity{
 //    @Column(name = "last_name", length = 20)
 //    private String lastName;
 //
-//    public String getUsername() {
-//        return username;
-//    }
-//
-//    public void setUsername(String username) {
-//        this.username = username;
-//    }
-//
-//    public String getPassword() {
-//        return password;
-//    }
-//
-//    public void setPassword(String password) {
-//        this.password = password;
-//    }
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 //
 //    public String getFirstName() {
 //        return firstName;
@@ -56,4 +62,5 @@ public class User extends AbstractEntity{
 //    public void setLastName(String lastName) {
 //        this.lastName = lastName;
 //    }
+
 }

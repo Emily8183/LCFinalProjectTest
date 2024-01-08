@@ -1,19 +1,18 @@
 package com.skilldev.easytraveltest.model.dto;
 
-import jakarta.validation.constraints.NotBlank;
 
 public class LoginFormDTO {
 
     //TODO: validation?
 
-    @NotNull(message = "Username is required")
-    @NotBlank(message = "Username is required")
-    @Size(min = 3, max = 30, message = "Username must be 3-20 characters Long.")
+//    @NotNull(message = "Username is required")
+//    @NotBlank(message = "Username is required")
+//    @Size(min = 3, max = 30, message = "Username must be 3-20 characters Long.")
     private String username;
 
-    @NotNull(message = "Password is required")
-    @NotBlank(message = "Password is required")
-    @Size(min = 6, max = 30, message = "Password must be 6-30 characters long.")
+//    @NotNull(message = "Password is required")
+//    @NotBlank(message = "Password is required")
+//    @Size(min = 6, max = 30, message = "Password must be 6-30 characters long.")
     private String password;
 
     //TODO: do I not put firstname and lastname here since it's DTO?
