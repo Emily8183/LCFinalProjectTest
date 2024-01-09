@@ -94,6 +94,10 @@ public class AuthenticationController {
         model.addAttribute(new LoginFormDTO());
         //TODO: send value of loggedIn boolean
         return "login";
+    }
+
+    @PostMapping("/login")
+    public String processLoginForm(@ModelAttribute LoginFormDTO loginFormDTO, Errors erros, HttpServletRequest request) {
 
     }
 

@@ -12,12 +12,12 @@
         <form method="post">
             <div>
                 <label th:for="username">Username</label>
-                <input th:field="${LoginFormDTO.username}" />
+                <input th:field="${loginFormDTO.username}" />
             </div>
             <div>
                 <label th:for="password">Password</label>
-                <input th:field="${LoginFormDTO.password}" type="password" />
-                <p th:errors="${LoginFormDTO.password}"></p>
+                <input th:field="${loginFormDTO.password}" type="password" />
+                <p th:errors="${loginFormDTO.password}"></p>
             </div>
 
             <button type="Submit">Log In</button>
