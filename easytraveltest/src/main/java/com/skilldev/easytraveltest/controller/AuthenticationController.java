@@ -89,7 +89,8 @@ public class AuthenticationController {
     }
 
     @GetMapping("/login")
-    public String displayLoginForm(Model model, HttpSession session) {
+//    public String displayLoginForm(Model model, HttpSession session) {
+    public String displayLoginForm(Model model) {
         model.addAttribute(new LoginFormDTO());
 //        model.addAttribute("loggedIn", session.getAttribute("user") != null);
         return "login";
