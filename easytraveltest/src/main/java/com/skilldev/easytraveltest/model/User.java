@@ -63,4 +63,8 @@ public class User extends AbstractEntity{
 //        this.lastName = lastName;
 //    }
 
+    public boolean isMatchingPassword(String password) {
+        return encoder.matches(password, pwHash);
+    }
+
 }

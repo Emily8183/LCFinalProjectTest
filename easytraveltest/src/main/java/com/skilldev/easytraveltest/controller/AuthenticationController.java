@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Locale;
 import java.util.Optional;
 
 
@@ -59,7 +60,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    // supposed to have @Valid here
+    //TODO: add @Valid here
     public String processRegister(@ModelAttribute RegistrationFormDTO registrationFormDTO, Errors errors, HttpServletRequest request){
 
         if (errors.hasErrors()) {
@@ -68,7 +69,7 @@ public class AuthenticationController {
 
         User existingUser = userRepository.findByUsername(registrationFormDTO.getUsername());
 
-        if (!(existingUser == null)) {
+        if (existingUser != null) {
             errors.rejectValue("username", "username.alreadyExists", "A user with that username already exists");
             return "registration_form";
         }
@@ -97,8 +98,28 @@ public class AuthenticationController {
     }
 
     @PostMapping("/login")
-    public String processLoginForm(@ModelAttribute LoginFormDTO loginFormDTO, Errors erros, HttpServletRequest request) {
+    // TODO: add @Valid here
+    public String processLoginForm(@ModelAttribute LoginFormDTO loginFormDTO, Errors errors, HttpServletRequest request) {
 
+        if (errors.hasErrors()) {
+            return "login";
+        }
+
+        User theUser = userRepository.findByUsername(loginFormDTO.getUsername());
+
+        String password = loginFormDTO.getPassword();
+
+        if (theUser == null || !theUser.isMatchingPassword(password)) {
+            errors.rejectValue(
+                    "password",
+                    "login.invalid",
+                    "Credentials invalid. Please try again with correct username/password."
+            );
+            return "login";
+        }
+
+        setUserInSession(request.getSession(), theUser);
+        return "login_success";
     }
 
 }
