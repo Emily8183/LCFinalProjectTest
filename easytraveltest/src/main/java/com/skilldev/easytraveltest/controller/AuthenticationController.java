@@ -122,4 +122,11 @@ public class AuthenticationController {
         return "login_success";
     }
 
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request) {
+        request.getSession().invalidate();
+        return "redirect:/login";
+    }
+
+
 }
