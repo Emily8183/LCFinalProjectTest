@@ -3,6 +3,7 @@ package com.skilldev.easytraveltest.model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 //import jakarta.validation.constraints.NotNull;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
 @Entity
@@ -11,15 +12,13 @@ public class User extends AbstractEntity{
 //    @NotNull
     private String username;
 
-    private String password;
+    private String pwHash;
+
+    public User() {}
 
     public User(String username, String password) {
         this.username = username;
-        this.password = password;
-    }
-
-    public User() {
-
+        this.pwHash = encoder.encode(password);
     }
 
     //
@@ -35,18 +34,9 @@ public class User extends AbstractEntity{
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    //not able to be overwritten
+    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-//
 //    public String getFirstName() {
 //        return firstName;
 //    }
@@ -62,5 +52,9 @@ public class User extends AbstractEntity{
 //    public void setLastName(String lastName) {
 //        this.lastName = lastName;
 //    }
+
+    public boolean isMatchingPassword(String password) {
+        return encoder.matches(password, pwHash);
+    }
 
 }

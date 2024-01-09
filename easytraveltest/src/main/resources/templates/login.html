@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>easyTravel Login</title>
+</head>
+<body>
+
+    <main>
+        <h1>Log In</h1>
+
+        <form method="post">
+            <div>
+                <label th:for="username">Username</label>
+                <input th:field="${loginFormDTO.username}" />
+                <p th:errors="${loginFormDTO.username}"></p>
+            </div>
+            <div>
+                <label th:for="password">Password</label>
+                <input th:field="${loginFormDTO.password}" type="password" />
+                <p th:errors="${loginFormDTO.password}"></p>
+            </div>
+
+            <button type="Submit">Log In</button>
+        </form>
+        <p>Don't have an account? <a href="/register">Register Here.</a></p>
+    </main>
+
+</body>
+</html>
