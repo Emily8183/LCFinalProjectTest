@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.Locale;
 import java.util.Optional;
 
 
@@ -30,6 +29,7 @@ public class AuthenticationController {
     //define the static method setUserInSession to use when they first register or successfully log in by giving them a userId in the session. It's meant to check if we have the session and the user.
     private static void setUserInSession(HttpSession session, User user) {
         session.setAttribute(userSessionKey, user.getId());
+        System.out.println("session: " + session.getAttribute("user"));
     }
 
     public User getUserFromSession(HttpSession session) {
@@ -53,13 +53,13 @@ public class AuthenticationController {
     public String showRegistrationForm(Model model, HttpSession session) {
 
         model.addAttribute(new RegistrationFormDTO());
-        model.addAttribute("loggedIn", session.getAttribute("user") != null);
+//        model.addAttribute("loggedIn", session.getAttribute("user") != null);
         return "registration_form";
     }
 
     @PostMapping("/register")
     //TODO: add @Valid here
-    public String processRegister(@ModelAttribute RegistrationFormDTO registrationFormDTO, Errors errors, HttpServletRequest request){
+    public String processRegister(@ModelAttribute RegistrationFormDTO registrationFormDTO, Errors errors, HttpServletRequest request) {
 
         if (errors.hasErrors()) {
             return "registration_form";
@@ -91,7 +91,7 @@ public class AuthenticationController {
     @GetMapping("/login")
     public String displayLoginForm(Model model, HttpSession session) {
         model.addAttribute(new LoginFormDTO());
-        model.addAttribute("loggedIn", session.getAttribute("user") != null);
+//        model.addAttribute("loggedIn", session.getAttribute("user") != null);
         return "login";
     }
 
@@ -125,6 +125,4 @@ public class AuthenticationController {
         request.getSession().invalidate();
         return "redirect:/login";
     }
-
-
 }
