@@ -3,6 +3,7 @@ package com.skilldev.easytraveltest.model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 //import jakarta.validation.constraints.NotNull;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
 @Entity
@@ -13,13 +14,11 @@ public class User extends AbstractEntity{
 
     private String password;
 
+    public User() {}
+
     public User(String username, String password) {
         this.username = username;
-        this.password = password;
-    }
-
-    public User() {
-
+        this.pwHash = password;
     }
 
     //
@@ -38,6 +37,8 @@ public class User extends AbstractEntity{
     public void setUsername(String username) {
         this.username = username;
     }
+
+    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     public String getPassword() {
         return password;
