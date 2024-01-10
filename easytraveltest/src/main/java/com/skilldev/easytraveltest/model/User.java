@@ -14,7 +14,6 @@ public class User extends AbstractEntity{
 
     private String pwHash;
 
-
 //    @NotNull
     private String firstName;
 
