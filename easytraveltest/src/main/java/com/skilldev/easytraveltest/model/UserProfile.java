@@ -7,6 +7,8 @@ import jakarta.persistence.OneToOne;
 @Entity
 public class UserProfile extends AbstractEntity{
 
+    private int userId;
+
       //    @NotNull
     private String firstName;
 
@@ -19,12 +21,21 @@ public class UserProfile extends AbstractEntity{
 
     private String email;
 
-    public UserProfile(String firstName, String lastName, String address, String location, String email) {
+    public UserProfile(int userId, String firstName, String lastName, String address, String location, String email) {
+        this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
         this.location = location;
         this.email = email;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getFirstName() {

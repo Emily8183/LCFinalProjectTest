@@ -1,10 +1,7 @@
 package com.skilldev.easytraveltest.model;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 //import jakarta.validation.constraints.NotNull;
-import jakarta.persistence.OneToOne;
 import jakarta.validation.Valid;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -19,6 +16,7 @@ public class User extends AbstractEntity{
 
     @OneToOne(cascade = CascadeType.ALL)
     @Valid
+//    @JoinColumn()
     private UserProfile profile;
 
 
@@ -29,10 +27,10 @@ public class User extends AbstractEntity{
         this.pwHash = encoder.encode(password);
     }
 
-    public User(String username, UserProfile profile) {
-        this.username =username;
-        this.profile = profile;
-    }
+//    public User(String username, UserProfile profile) {
+//        this.username =username;
+//        this.profile = profile;
+//    }
 
     public String getUsername() {
         return username;
