@@ -7,11 +7,7 @@ import jakarta.persistence.OneToOne;
 @Entity
 public class UserProfile extends AbstractEntity{
 
-    @OneToOne
-    @JoinColumn(name="user_id")
-    private User user;
-
-    //    @NotNull
+      //    @NotNull
     private String firstName;
 
     //    @NotNull
