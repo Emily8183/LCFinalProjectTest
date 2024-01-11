@@ -1,7 +1,4 @@
 package com.skilldev.easytraveltest.model.dto;
-
-
-
 public class RegistrationFormDTO extends LoginFormDTO{
 
 //    @NotNull(message = "Password is required")
