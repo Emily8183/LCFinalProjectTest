@@ -18,7 +18,6 @@ public class User extends AbstractEntity{
     @Valid
     private UserProfile profile;
 
-
     public User() {}
 
     public User(String username, String password) {
@@ -26,7 +25,15 @@ public class User extends AbstractEntity{
         this.pwHash = encoder.encode(password);
     }
 
-//    public User(String username, UserProfile profile) {
+    public UserProfile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(UserProfile profile) {
+        this.profile = profile;
+    }
+
+    //    public User(String username, UserProfile profile) {
 //        this.username =username;
 //        this.profile = profile;
 //    }

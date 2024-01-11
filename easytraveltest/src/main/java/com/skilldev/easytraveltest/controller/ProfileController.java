@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import jakarta.servlet.http.HttpSession;
 
@@ -27,7 +29,7 @@ public class ProfileController {
     private static final String userSessionKey = "user";
 
     @GetMapping("")
-    public String viewProfile (Model model, HttpSession session) {
+    public String displayProfileForm (Model model, HttpSession session) {
 
         Integer userId = (Integer) session.getAttribute(userSessionKey);
 
@@ -43,7 +45,28 @@ public class ProfileController {
         model.addAttribute("username", userOpt.get().getUsername());
         model.addAttribute("userProfileDTO", userProfileDTO);
 
-        return "profile/view";
+        return "profile/form";
+    }
+
+    @PostMapping("/save")
+    // TODO: add @Valid here
+    public String processProfileForm(@ModelAttribute UserProfileDTO userProfileDTO, HttpSession session) {
+
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+
+        Optional<User> userOpt = userRepository.findById(userId);
+
+        User user = userOpt.get();
+
+        UserProfile userProfile = profileRepository.findByUserId(userId);
+
+        userProfile.setFirstName(userProfileDTO.getFirstName());
+
+        user.setProfile(userProfile);
+
+        profileRepository.save(userProfile);
+
+        return "redirect:/profile";
     }
 
 }
