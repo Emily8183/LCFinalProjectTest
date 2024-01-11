@@ -6,8 +6,6 @@ import com.skilldev.easytraveltest.model.dto.UserProfileDTO;
 import com.skilldev.easytraveltest.repository.ProfileRepository;
 import com.skilldev.easytraveltest.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,8 +28,6 @@ public class ProfileController {
 
     @GetMapping("")
     public String viewProfile (Model model, HttpSession session) {
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        String username = auth.getName();
 
         Integer userId = (Integer) session.getAttribute(userSessionKey);
 

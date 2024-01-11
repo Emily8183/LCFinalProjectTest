@@ -1,8 +1,6 @@
 package com.skilldev.easytraveltest.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 
 @Entity
 public class UserProfile extends AbstractEntity{
