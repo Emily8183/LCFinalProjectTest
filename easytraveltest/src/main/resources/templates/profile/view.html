@@ -17,11 +17,15 @@
                 <label th:for="firstname">First Name</label>
                 <input th:value="${userProfileDTO.firstName}" id="firstname" name="firstname"/>
             </div>
-<!--            <div>-->
-<!--                <label th:for="password">Password</label>-->
-<!--                <input th:field="${loginFormDTO.password}" type="password" />-->
-<!--                <p th:errors="${loginFormDTO.password}"></p>-->
-<!--            </div>-->
+            <div>
+                <label th:for="lastname">Last Name</label>
+                <input th:value="${userProfileDTO.lastName}" id="lastname" name="lastname"/>
+            </div>
+            <div>
+                <label th:for="lastname">Last Name</label>
+                <input th:value="${userProfileDTO.lastName}" id="lastname" name="lastname"/>
+            </div>
+
 
             <button type="Submit">Save</button>
         </form>
