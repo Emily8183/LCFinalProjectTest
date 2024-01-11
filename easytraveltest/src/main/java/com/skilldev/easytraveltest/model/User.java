@@ -1,8 +1,8 @@
 package com.skilldev.easytraveltest.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 //import jakarta.validation.constraints.NotNull;
+import jakarta.validation.Valid;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
@@ -14,6 +14,11 @@ public class User extends AbstractEntity{
 
     private String pwHash;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @Valid
+    private UserProfile profile;
+
+
     public User() {}
 
     public User(String username, String password) {
@@ -21,37 +26,17 @@ public class User extends AbstractEntity{
         this.pwHash = encoder.encode(password);
     }
 
-    //
-//    @NotNull
-//    @Column(name = "first_name", length = 20)
-//    private String firstName;
-//
-//    @NotNull
-//    @Column(name = "last_name", length = 20)
-//    private String lastName;
-//
+//    public User(String username, UserProfile profile) {
+//        this.username =username;
+//        this.profile = profile;
+//    }
+
     public String getUsername() {
         return username;
     }
 
-    //not able to be overwritten
+    //should not able to be overwritten
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-
-//    public String getFirstName() {
-//        return firstName;
-//    }
-//
-//    public void setFirstName(String firstName) {
-//        this.firstName = firstName;
-//    }
-//
-//    public String getLastName() {
-//        return lastName;
-//    }
-//
-//    public void setLastName(String lastName) {
-//        this.lastName = lastName;
-//    }
 
     public boolean isMatchingPassword(String password) {
         return encoder.matches(password, pwHash);
