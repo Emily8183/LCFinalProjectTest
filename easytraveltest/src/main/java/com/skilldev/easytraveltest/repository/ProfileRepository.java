@@ -1,9 +1,11 @@
-//package com.skilldev.easytraveltest.repository;
-//
-//import org.springframework.context.annotation.Profile;
-//import org.springframework.data.jpa.repository.JpaRepository;
-//
-//public interface ProfileRepository extends JpaRepository<Profile, Integer> {
-//    Profile findByEmail(String email);
-//}
+package com.skilldev.easytraveltest.repository;
+
+import com.skilldev.easytraveltest.model.UserProfile;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface ProfileRepository extends JpaRepository<UserProfile, Integer> {
+    UserProfile findByUserId(int userId);
+}
 

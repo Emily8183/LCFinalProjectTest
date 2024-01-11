@@ -9,8 +9,22 @@
     <main>
         <div>
             <!-- TODO: add logged in user's name -->
-        <h1 th:text="${user.username}">User's name</h1>
+        <h1 th:text="${username}">User's name</h1>
         </div>
+
+        <form method="post">
+            <div>
+                <label th:for="firstname">First Name</label>
+                <input th:value="${userProfileDTO.firstName}" id="firstname" name="firstname"/>
+            </div>
+<!--            <div>-->
+<!--                <label th:for="password">Password</label>-->
+<!--                <input th:field="${loginFormDTO.password}" type="password" />-->
+<!--                <p th:errors="${loginFormDTO.password}"></p>-->
+<!--            </div>-->
+
+            <button type="Submit">Save</button>
+        </form>
     </main>
 
 </body>

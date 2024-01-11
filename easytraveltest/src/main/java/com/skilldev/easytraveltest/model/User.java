@@ -16,7 +16,6 @@ public class User extends AbstractEntity{
 
     @OneToOne(cascade = CascadeType.ALL)
     @Valid
-//    @JoinColumn()
     private UserProfile profile;
 
 
