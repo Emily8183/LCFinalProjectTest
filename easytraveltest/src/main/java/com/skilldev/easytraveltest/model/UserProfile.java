@@ -66,7 +66,7 @@ public class UserProfile extends AbstractEntity{
         return city;
     }
 
-    public void setCity(String location) {
+    public void setCity(String city) {
         this.city = city;
     }
 
