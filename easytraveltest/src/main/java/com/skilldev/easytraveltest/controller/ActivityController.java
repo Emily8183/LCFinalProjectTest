@@ -44,7 +44,7 @@ public class ActivityController {
                     activity.setCost(newActivity.getCost());
                     activity.setStart_date(newActivity.getStart_date());
                     activity.setEnd_date(newActivity.getEnd_date());
-                    activity.setGroupId(newActivity.getGroupId());
+                    activity.setGroup(newActivity.getGroup());
                     return activityRepository.save(activity);
                 });
     }

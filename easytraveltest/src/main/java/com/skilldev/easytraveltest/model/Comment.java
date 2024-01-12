@@ -3,10 +3,10 @@ package com.skilldev.easytraveltest.model;
 import jakarta.persistence.*;
 
 @Entity
-public class Comments extends AbstractEntity{
+public class Comment extends AbstractEntity{
 
     @ManyToOne
-    @JoinColumn(name="activity_id")
+    @JoinColumn(name = "activity_id")
     private Activity activity;
 
     @ManyToOne
@@ -15,9 +15,9 @@ public class Comments extends AbstractEntity{
 
     private String text;
 
-    public Comments() {}
+    public Comment() {}
 
-    public Comments(Activity activity, User createdBy, String text) {
+    public Comment(Activity activity, User createdBy, String text) {
         this.activity = activity;
         this.createdBy = createdBy;
         this.text = text;

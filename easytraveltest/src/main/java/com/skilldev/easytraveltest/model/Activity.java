@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 
 @Entity
-public class Activity {
+public class Activity extends AbstractEntity{
 
     private String event_name;
     private String event_description;
@@ -14,7 +14,7 @@ public class Activity {
     private String end_date;
 
     @ManyToOne
-    @Column(name= "group_id", nullable = false)
+    @JoinColumn(name= "group_id", nullable = false)
     private Group group;
 
     public Group getGroup() {
