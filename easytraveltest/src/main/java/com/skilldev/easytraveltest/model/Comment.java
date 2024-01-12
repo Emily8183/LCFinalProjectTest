@@ -23,6 +23,7 @@ public class Comment extends AbstractEntity{
         this.text = text;
     }
 
+
     public Activity getActivity() {
         return activity;
     }
