@@ -1,0 +1,49 @@
+package com.skilldev.easytraveltest.model;
+
+import jakarta.persistence.*;
+
+@Entity
+public class Comments extends AbstractEntity{
+
+    @ManyToOne
+    @JoinColumn(name="activity_id")
+    private Activity activity;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User createdBy;
+
+    private String text;
+
+    public Comments() {}
+
+    public Comments(Activity activity, User createdBy, String text) {
+        this.activity = activity;
+        this.createdBy = createdBy;
+        this.text = text;
+    }
+
+    public Activity getActivity() {
+        return activity;
+    }
+
+    public void setActivity(Activity activity) {
+        this.activity = activity;
+    }
+
+    public User getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+}
