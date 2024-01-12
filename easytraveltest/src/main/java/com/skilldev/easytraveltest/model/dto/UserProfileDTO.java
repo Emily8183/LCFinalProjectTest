@@ -9,7 +9,7 @@ public class UserProfileDTO {
 
     private String address;
 
-    private String location;
+    private String city;
 
     private String email;
 
@@ -37,12 +37,12 @@ public class UserProfileDTO {
         this.address = address;
     }
 
-    public String getLocation() {
-        return location;
+    public String getCity() {
+        return city;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getEmail() {

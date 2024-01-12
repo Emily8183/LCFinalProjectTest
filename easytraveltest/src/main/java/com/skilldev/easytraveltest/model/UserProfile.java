@@ -15,16 +15,18 @@ public class UserProfile extends AbstractEntity{
 
     private String address;
 
-    private String location;
+    private String city;
 
     private String email;
 
-    public UserProfile(int userId, String firstName, String lastName, String address, String location, String email) {
+    public UserProfile() {}
+
+    public UserProfile(int userId, String firstName, String lastName, String address, String city, String email) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
-        this.location = location;
+        this.city = city;
         this.email = email;
     }
 
@@ -60,12 +62,12 @@ public class UserProfile extends AbstractEntity{
         this.address = address;
     }
 
-    public String getLocation() {
-        return location;
+    public String getCity() {
+        return city;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setCity(String location) {
+        this.city = city;
     }
 
     public String getEmail() {

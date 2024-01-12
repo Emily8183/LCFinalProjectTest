@@ -29,7 +29,7 @@ public class ProfileController {
     private static final String userSessionKey = "user";
 
     @GetMapping("")
-    public String displayProfileForm (Model model, HttpSession session) {
+    public String displayProfileForm(Model model, HttpSession session) {
 
         Integer userId = (Integer) session.getAttribute(userSessionKey);
 
@@ -40,6 +40,10 @@ public class ProfileController {
 
         if (userProfile != null) {
             userProfileDTO.setFirstName(userProfile.getFirstName());
+            userProfileDTO.setLastName(userProfile.getLastName());
+            userProfileDTO.setAddress(userProfile.getAddress());
+            userProfileDTO.setCity(userProfile.getCity());
+            userProfileDTO.setEmail(userProfile.getEmail());
         }
 
         model.addAttribute("username", userOpt.get().getUsername());
@@ -48,21 +52,24 @@ public class ProfileController {
         return "profile/form";
     }
 
-    @PostMapping("/save")
+    @PostMapping("")
     // TODO: add @Valid here
     public String processProfileForm(@ModelAttribute UserProfileDTO userProfileDTO, HttpSession session) {
 
         Integer userId = (Integer) session.getAttribute(userSessionKey);
 
-        Optional<User> userOpt = userRepository.findById(userId);
-
-        User user = userOpt.get();
-
         UserProfile userProfile = profileRepository.findByUserId(userId);
 
-        userProfile.setFirstName(userProfileDTO.getFirstName());
+            if (userProfile == null) {
+                userProfile = new UserProfile();
+                userProfile.setUserId(userId);
+            }
 
-        user.setProfile(userProfile);
+            userProfile.setFirstName(userProfileDTO.getFirstName());
+            userProfile.setLastName(userProfileDTO.getLastName());
+            userProfile.setAddress(userProfileDTO.getAddress());
+            userProfile.setCity(userProfileDTO.getCity());
+            userProfile.setEmail(userProfileDTO.getEmail());
 
         profileRepository.save(userProfile);
 
@@ -70,3 +77,5 @@ public class ProfileController {
     }
 
 }
+
+
