@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>User Profile</title>
+</head>
+<body>
+
+    <main>
+        <div>
+        <h1>Welcome, </h1>
+        <h1 th:text="${username}">User's name</h1>
+        </div>
+
+        <form method="POST">
+            <div>
+                <label th:for="firstName">First Name</label>
+                <input th:value="${userProfileDTO.firstName}" id="firstName" name="firstName"/>
+            </div>
+            <div>
+                <label th:for="lastName">Last Name</label>
+                <input th:value="${userProfileDTO.lastName}" id="lastName" name="lastName"/>
+            </div>
+            <div>
+                <label th:for="address">Address</label>
+                <input th:value="${userProfileDTO.address}" id="address" name="address"/>
+            </div>
+            <div>
+                <label th:for="city">City</label>
+                <input th:value="${userProfileDTO.city}" id="city" name="city"/>
+            </div>
+            <div>
+                <label th:for="email">Email</label>
+                <input th:value="${userProfileDTO.email}" id="email" name="email"/>
+            </div>
+
+
+            <button type="Submit">Save</button>
+        </form>
+    </main>
+
+</body>
+</html>

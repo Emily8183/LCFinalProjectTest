@@ -6,11 +6,11 @@ import com.skilldev.easytraveltest.model.dto.UserProfileDTO;
 import com.skilldev.easytraveltest.repository.ProfileRepository;
 import com.skilldev.easytraveltest.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import jakarta.servlet.http.HttpSession;
 
@@ -29,9 +29,7 @@ public class ProfileController {
     private static final String userSessionKey = "user";
 
     @GetMapping("")
-    public String viewProfile (Model model, HttpSession session) {
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        String username = auth.getName();
+    public String displayProfileForm(Model model, HttpSession session) {
 
         Integer userId = (Integer) session.getAttribute(userSessionKey);
 
@@ -42,12 +40,42 @@ public class ProfileController {
 
         if (userProfile != null) {
             userProfileDTO.setFirstName(userProfile.getFirstName());
+            userProfileDTO.setLastName(userProfile.getLastName());
+            userProfileDTO.setAddress(userProfile.getAddress());
+            userProfileDTO.setCity(userProfile.getCity());
+            userProfileDTO.setEmail(userProfile.getEmail());
         }
 
         model.addAttribute("username", userOpt.get().getUsername());
         model.addAttribute("userProfileDTO", userProfileDTO);
 
-        return "profile/view";
+        return "profile/form";
+    }
+
+    @PostMapping("")
+    // TODO: add @Valid here
+    public String processProfileForm(@ModelAttribute UserProfileDTO userProfileDTO, HttpSession session) {
+
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+
+        UserProfile userProfile = profileRepository.findByUserId(userId);
+
+            if (userProfile == null) {
+                userProfile = new UserProfile();
+                userProfile.setUserId(userId);
+            }
+
+            userProfile.setFirstName(userProfileDTO.getFirstName());
+            userProfile.setLastName(userProfileDTO.getLastName());
+            userProfile.setAddress(userProfileDTO.getAddress());
+            userProfile.setCity(userProfileDTO.getCity());
+            userProfile.setEmail(userProfileDTO.getEmail());
+
+        profileRepository.save(userProfile);
+
+        return "redirect:/profile";
     }
 
 }
+
+
