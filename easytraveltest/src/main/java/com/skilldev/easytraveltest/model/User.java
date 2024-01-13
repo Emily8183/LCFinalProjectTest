@@ -33,11 +33,6 @@ public class User extends AbstractEntity{
         this.profile = profile;
     }
 
-    //    public User(String username, UserProfile profile) {
-//        this.username =username;
-//        this.profile = profile;
-//    }
-
     public String getUsername() {
         return username;
     }
