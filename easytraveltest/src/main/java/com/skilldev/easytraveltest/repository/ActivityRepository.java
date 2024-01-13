@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface ActivityRepository extends JpaRepository<Activity,Long> {
+public interface ActivityRepository extends JpaRepository<Activity,Integer> {
 
-    List<Activity> findByGroupId(Long groupId);
 }
