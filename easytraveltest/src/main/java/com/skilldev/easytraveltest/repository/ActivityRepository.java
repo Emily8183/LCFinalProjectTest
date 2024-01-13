@@ -11,8 +11,5 @@ import java.util.Optional;
 @Repository
 public interface ActivityRepository extends JpaRepository<Activity,Long> {
 
-    static Activity findById(Optional<Comment> byId) {
-    }
-
     List<Activity> findByGroupId(Long groupId);
 }

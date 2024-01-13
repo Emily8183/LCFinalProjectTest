@@ -6,9 +6,11 @@ import jakarta.persistence.*;
 public class Comment extends AbstractEntity{
 
     @ManyToOne
+    @JoinColumn(name = "activity_id")
     private Activity activity;
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User createdBy;
 
     private String text;
