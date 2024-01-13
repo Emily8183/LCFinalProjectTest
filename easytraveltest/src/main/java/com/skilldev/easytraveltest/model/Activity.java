@@ -2,6 +2,8 @@ package com.skilldev.easytraveltest.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 
 @Entity
 public class Activity extends AbstractEntity{
@@ -13,9 +15,31 @@ public class Activity extends AbstractEntity{
     private String start_date;
     private String end_date;
 
+    @ManyToMany
+    private List<ActivityType> activityTypeList;
+
     @ManyToOne
     @JoinColumn(name= "group_id", nullable = false)
     private Group group;
+
+    public Activity(String event_name, String event_description, Float cost, String location, String start_date, String end_date, List<ActivityType> activityTypeList, Group group) {
+        this.event_name = event_name;
+        this.event_description = event_description;
+        this.cost = cost;
+        this.location = location;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.activityTypeList = activityTypeList;
+        this.group = group;
+    }
+
+    public List<ActivityType> getActivityTypeList() {
+        return activityTypeList;
+    }
+
+    public void setActivityTypeList(List<ActivityType> activityTypeList) {
+        this.activityTypeList = activityTypeList;
+    }
 
     public Group getGroup() {
         return group;
