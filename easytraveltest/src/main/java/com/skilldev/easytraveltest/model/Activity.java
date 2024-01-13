@@ -19,7 +19,6 @@ public class Activity extends AbstractEntity{
     private List<ActivityType> activityTypeList;
 
     @ManyToOne
-    @JoinColumn(name= "group_id", nullable = false)
     private Group group;
 
     public Activity(String event_name, String event_description, Float cost, String location, String start_date, String end_date, List<ActivityType> activityTypeList, Group group) {

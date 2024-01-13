@@ -1,9 +1,9 @@
 package com.skilldev.easytraveltest.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Group extends AbstractEntity{
@@ -12,12 +12,15 @@ public class Group extends AbstractEntity{
     private String organizer;
     private String organizer_email;
 
-    public Long getId() {
-        return id;
-    }
+    @OneToMany(mappedBy = "group")
+    private final List<Activity> activities = new ArrayList<>();
 
-    public void setId(Long id) {
-        this.id = id;
+    public Group() {}
+
+    public Group(String group_name, String organizer, String organizer_email) {
+        this.group_name = group_name;
+        this.organizer = organizer;
+        this.organizer_email = organizer_email;
     }
 
     public String getGroup_name() {
