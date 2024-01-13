@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/comments")
@@ -35,17 +36,20 @@ public class CommentController {
     @GetMapping("")
     public String showComment(Model model, HttpSession session) {
         List<Comment> comments = commentRepository.findAll();
-        model.addAttribute("comment", comments);
+        Comment newComment = new Comment();
+        model.addAttribute("comments", comments);
+        model.addAttribute("newComment", newComment);
 
         return "comments/commentshowpage";
     }
 
     @PostMapping("")
     public String addComment(@ModelAttribute Comment newComment, HttpSession session) {
-        User createdBy = (User) session.getAttribute(userSessionKey);
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        Optional<User> userOpt = userRepository.findById(userId);
 
-        if(createdBy != null) {
-            newComment.setCreatedBy(createdBy);
+        if( userOpt.isPresent()) {
+            newComment.setUser(userOpt.get());
             commentRepository.save(newComment);
         }
 

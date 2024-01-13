@@ -11,10 +11,10 @@
                 <p th:text="${comment.text}"></p>
         </div>
 
-        <form method="POST" th:action="@{/comments}">
+        <form method="POST">
             <div>
-                <label th:for="comment">Leave your comments</label>
-                <input th:value="${comment.text}" id="comment" name="comment"/>
+                <label th:for="text">Leave your comments</label>
+                <input th:value="${newComment.text}" id="text" name="text"/>
             </div>
 
             <button type="Submit">Save</button>
