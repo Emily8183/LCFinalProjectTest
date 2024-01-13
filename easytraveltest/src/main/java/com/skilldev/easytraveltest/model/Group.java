@@ -6,12 +6,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "group_table")
-public class Group {
+public class Group extends AbstractEntity{
 
-    @Id
-    @GeneratedValue
-    private Long id;
     private String group_name;
     private String organizer;
     private String organizer_email;
