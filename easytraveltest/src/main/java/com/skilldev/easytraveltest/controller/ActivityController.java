@@ -27,33 +27,31 @@ public class ActivityController {
     private ActivityTypeRepository activityTypeRepository;
 
     @GetMapping("")
-    public String displayActivities (@RequestParam Integer operatorId, @RequestParam Integer activityTypeId, Model model, HttpSession session){
+    public String displayActivities(@RequestParam Integer operatorId, @RequestParam Integer activityTypeId, Model model, HttpSession session) {
         if (operatorId != null) {
             Optional<Operator> operatorOptional = operatorRepository.findById(operatorId);
             if (operatorOptional.isPresent()) {
                 Operator operator = operatorOptional.get();
                 model.addAttribute("activities", operator.getActivities());
             }
-        }
-        else if (activityTypeId != null) {
+        } else if (activityTypeId != null) {
             Optional<ActivityType> activityTypeOptional = activityTypeRepository.findById(activityTypeId);
             if (activityTypeOptional.isPresent()) {
                 ActivityType activityType = activityTypeOptional.get();
                 model.addAttribute("activities", activityType.getActivities());
             }
         } else {
-            model.addAttribute("activities",activityRepository.findAll());
+            model.addAttribute("activities", activityRepository.findAll());
         }
         return "activities/index";
+
     }
-//    List<Activity> getAllActivities() {
-//        return activityRepository.findAll();
-//    }
-//
-//    @PostMapping("/activity")
-//    Activity newActivity(@RequestBody Activity newActivity) {
-//        return activityRepository.save(newActivity);
-//    }
+}
+
+//    @PostMapping("")
+//    public String Activity(@RequestBody Activity newActivity) {
+////        return activityRepository.save(newActivity);
+////
 //
 //
 //
@@ -88,4 +86,3 @@ public class ActivityController {
 //        activityRepository.deleteById(id);
 //        return "User with id " + id + " has been deleted successfully.";
 //    }
-}
