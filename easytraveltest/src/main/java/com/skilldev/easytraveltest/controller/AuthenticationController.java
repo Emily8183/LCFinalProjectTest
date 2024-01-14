@@ -118,7 +118,7 @@ public class AuthenticationController {
         }
 
         setUserInSession(request.getSession(), theUser);
-        return "login_success";
+        return "activities/index";
     }
 
     @GetMapping("/logout")
