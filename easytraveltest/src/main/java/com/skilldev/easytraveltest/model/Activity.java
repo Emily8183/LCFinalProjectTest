@@ -16,36 +16,36 @@ public class Activity extends AbstractEntity{
     private String end_date;
 
     @ManyToMany
-    private List<ActivityType> activityTypeList;
+    private List<ActivityType> activityType;
 
     @ManyToOne
-    private Group group;
+    private Operator operator;
 
-    public Activity(String event_name, String event_description, Float cost, String location, String start_date, String end_date, List<ActivityType> activityTypeList, Group group) {
+    public Activity(String event_name, String event_description, Float cost, String location, String start_date, String end_date, List<ActivityType> activityType, Operator operator) {
         this.event_name = event_name;
         this.event_description = event_description;
         this.cost = cost;
         this.location = location;
         this.start_date = start_date;
         this.end_date = end_date;
-        this.activityTypeList = activityTypeList;
-        this.group = group;
+        this.activityType = activityType;
+        this.operator = operator;
     }
 
-    public List<ActivityType> getActivityTypeList() {
-        return activityTypeList;
+    public List<ActivityType> getActivityType() {
+        return activityType;
     }
 
-    public void setActivityTypeList(List<ActivityType> activityTypeList) {
-        this.activityTypeList = activityTypeList;
+    public void setActivityType(List<ActivityType> activityType) {
+        this.activityType = activityType;
     }
 
-    public Group getGroup() {
-        return group;
+    public Operator getOperator() {
+        return operator;
     }
 
-    public void setGroup(Group group) {
-        this.group = group;
+    public void setOperator(Operator operator) {
+        this.operator = operator;
     }
 
     public String getEvent_name() {

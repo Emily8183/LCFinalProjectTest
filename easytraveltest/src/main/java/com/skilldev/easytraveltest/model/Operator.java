@@ -1,23 +1,25 @@
 package com.skilldev.easytraveltest.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class ActivityType extends AbstractEntity{
+public class Operator extends AbstractEntity{
 
     private String name;
+    private String email;
 
-    @ManyToMany(mappedBy = "activityType")
+    @OneToMany(mappedBy = "operator")
     private final List<Activity> activities = new ArrayList<>();
 
-    public ActivityType() {}
 
-    public ActivityType(String name) {
+    public Operator() {}
+
+    public Operator(String name, String email) {
         this.name = name;
+        this.email = email;
     }
 
     public String getName() {
@@ -26,6 +28,14 @@ public class ActivityType extends AbstractEntity{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public List<Activity> getActivities() {
