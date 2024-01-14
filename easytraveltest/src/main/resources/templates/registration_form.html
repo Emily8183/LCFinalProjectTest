@@ -18,12 +18,6 @@
                         <input type="text" th:field="${registrationFormDTO.username}"/>
                         <p th:errors="${registrationFormDTO.username}"></p>
 
-<!--                        <label th:for="firstName">First Name</label>-->
-<!--                        <input type="text" th:field="${user.firstName}"/>-->
-
-<!--                        <label th:for="lastName">Last Name</label>-->
-<!--                        <input type="text" th:field="${user.lastName}"/>-->
-
                         <label th:for="password">Password</label>
                         <input type="password" th:field="${registrationFormDTO.password}" />
                         <p class="error" th:errors="${registrationFormDTO.password}"></p>

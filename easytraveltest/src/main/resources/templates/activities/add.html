@@ -2,9 +2,29 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8"/>
-    <title>Title</title>
+    <title>Add more activities</title>
 </head>
 <body>
+<main>
+    <h1>Fill out the form and add more activities here</h1>
+    <form method="post">
+        <div>
+            <label th:for="event_name">Activity Name</label>
+            <input type="text" th:field="${activity.event_name}"/>
+
+            <label label for="activityType">Activity Type</label>
+            <select th:field="${activity.activityType}">
+                <option value="">Select an activity</option>
+                <Option th:each="activityType:${activityTypes}"
+                        th:value="${activityType.id}"
+                        th:text="$activityType}"></Option>
+            </select>
+
+            </div>
+        </div>
+    </form>
+
+</main>
 
 </body>
 </html>

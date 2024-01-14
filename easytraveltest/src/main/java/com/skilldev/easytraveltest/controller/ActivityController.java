@@ -1,5 +1,6 @@
 package com.skilldev.easytraveltest.controller;
 
+import com.skilldev.easytraveltest.model.Activity;
 import com.skilldev.easytraveltest.model.ActivityType;
 import com.skilldev.easytraveltest.model.Operator;
 import com.skilldev.easytraveltest.repository.ActivityRepository;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -45,6 +47,16 @@ public class ActivityController {
         }
         return "activities/index";
 
+    }
+
+    @GetMapping("/add")
+    public String displayAddActivityForm(Model model, HttpSession session) {
+        List<Operator> operator = (List<Operator>) operatorRepository.findAll();
+        List<ActivityType> activityType = (List<ActivityType>) activityTypeRepository.findAll();
+        model.addAttribute("activity", new Activity());
+        model.addAttribute("activityType", activityType);
+
+        return "activities/add";
     }
 }
 

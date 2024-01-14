@@ -32,6 +32,8 @@ public class Activity extends AbstractEntity{
         this.operator = operator;
     }
 
+    public Activity() {}
+
     public List<ActivityType> getActivityType() {
         return activityType;
     }
