@@ -19,6 +19,7 @@ public class Activity extends AbstractEntity{
     private String end_date;
 
     @ManyToMany
+    @NotNull(message="Activity type is required")
     private List<ActivityType> activityTypes;
 
     @ManyToOne
