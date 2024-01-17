@@ -1,11 +1,10 @@
 package com.skilldev.easytraveltest.controller;
 
-import com.skilldev.easytraveltest.model.Activity;
-import com.skilldev.easytraveltest.model.ActivityType;
-import com.skilldev.easytraveltest.model.Operator;
+import com.skilldev.easytraveltest.model.*;
 import com.skilldev.easytraveltest.repository.ActivityRepository;
 import com.skilldev.easytraveltest.repository.ActivityTypeRepository;
 import com.skilldev.easytraveltest.repository.OperatorRepository;
+import com.skilldev.easytraveltest.repository.UserRepository;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,8 +27,13 @@ public class ActivityController {
     @Autowired
     private ActivityTypeRepository activityTypeRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
+//    private static final String userSessionKey = "user";
+
     @GetMapping("")
-    public String displayActivities(@RequestParam Integer operatorId, @RequestParam Integer activityTypeId, Model model, HttpSession session) {
+    public String displayActivities(@RequestParam(required = false) Integer operatorId, @RequestParam(required = false) Integer activityTypeId, Model model) {
         if (operatorId != null) {
             Optional<Operator> operatorOptional = operatorRepository.findById(operatorId);
             if (operatorOptional.isPresent()) {
@@ -58,7 +62,28 @@ public class ActivityController {
 
         return "activities/add";
     }
+
+    @PostMapping("/add")
+    public String processAddActivity(@ModelAttribute Activity newActivity, @RequestParam String activityType) {
+//        Integer userId = (Integer) session.getAttribute(userSessionKey);
+//        Optional<User> userOpt = userRepository.findById(userId);
+//
+//        if( userOpt.isPresent()) {
+//            newActivity.setUser(userOpt.get());
+//            activityRepository.save(newActivity);
+//        }
+
+        if(activityType != null) {
+            List<ActivityType> selectedActivityType = (List<ActivityType>) activityTypeRepository.findAll(activityType);
+            newActivity.setActivityType(selectedActivityType);
+
+        }
+        activityRepository.save(newActivity);
+        return "redirect:/activities";
+    }
 }
+
+
 
 //    @PostMapping("")
 //    public String Activity(@RequestBody Activity newActivity) {

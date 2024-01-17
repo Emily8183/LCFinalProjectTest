@@ -1,6 +1,7 @@
 package com.skilldev.easytraveltest.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
@@ -8,6 +9,8 @@ import java.util.List;
 @Entity
 public class Activity extends AbstractEntity{
 
+    @ManyToOne
+    private User user;
     private String event_name;
     private String event_description;
     private Float cost;
@@ -16,38 +19,49 @@ public class Activity extends AbstractEntity{
     private String end_date;
 
     @ManyToMany
-    private List<ActivityType> activityType;
+    private List<ActivityType> activityTypes;
 
     @ManyToOne
-    private Operator operator;
+    @NotNull(message="Operator is required")
+    private List<Operator> operators;
 
-    public Activity(String event_name, String event_description, Float cost, String location, String start_date, String end_date, List<ActivityType> activityType, Operator operator) {
+    public Activity(User user, String event_name, String event_description, Float cost, String location, String start_date, String end_date, List<ActivityType> activityTypes, List<Operator> operators) {
+        this.user = user;
         this.event_name = event_name;
         this.event_description = event_description;
         this.cost = cost;
         this.location = location;
         this.start_date = start_date;
         this.end_date = end_date;
-        this.activityType = activityType;
-        this.operator = operator;
+        this.activityTypes = activityTypes;
+        this.operators = operators;
     }
 
     public Activity() {}
 
-    public List<ActivityType> getActivityType() {
-        return activityType;
+    public User getUser() {
+        return user;
     }
 
-    public void setActivityType(List<ActivityType> activityType) {
-        this.activityType = activityType;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Operator getOperator() {
-        return operator;
+    @NotNull(message="Activity type is required.")
+    public List<ActivityType> getActivityTypes() {
+        return activityTypes;
     }
 
-    public void setOperator(Operator operator) {
-        this.operator = operator;
+    public void setActivityTypes(List<ActivityType> activityTypes) {
+        this.activityTypes = activityTypes;
+    }
+
+    public List<Operator> getOperators() {
+        return operators;
+    }
+
+    public void setOperators(List<Operator> operators) {
+        this.operators = operators;
     }
 
     public String getEvent_name() {

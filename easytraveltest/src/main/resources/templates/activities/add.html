@@ -12,16 +12,32 @@
             <label th:for="event_name">Activity Name</label>
             <input type="text" th:field="${activity.event_name}"/>
 
-            <label label for="activityType">Activity Type</label>
-            <select th:field="${activity.activityType}">
-                <option value="">Select an activity</option>
-                <Option th:each="activityType:${activityTypes}"
-                        th:value="${activityType.id}"
-                        th:text="$activityType}"></Option>
-            </select>
+            <label th:for="event_description">Event Description</label>
+            <input type="text" th:field="${activity.event_description}"/>
 
-            </div>
+            <label th:for="cost">Cost</label>
+            <input type="text" th:field="${activity.cost}"/>
+
+            <label th:for="location">Location</label>
+            <input type="text" th:field="${activity.location}"/>
+
+            <label th:for="start_date">Start date</label>
+            <input type="text" th:field="${activity.start_date}"/>
+
+            <label th:for="end_date">End date</label>
+            <input type="text" th:field="${activity.end_date}"/>
+
+            <th:block th: each="activityType: ${activityTypes}">
+                <label>
+                    <input type="checkbox" name="activityTypes" th:value="{activityType.id}" />
+                    <span th:text="{activityType.name}"></span>
+                </label>
+
+            <label th:for="operator">Operator</label>
+            <input type="text" th:field="${activity.operator}"/>
+
         </div>
+        <button type='submit'>Add Activity</button>
     </form>
 
 </main>
