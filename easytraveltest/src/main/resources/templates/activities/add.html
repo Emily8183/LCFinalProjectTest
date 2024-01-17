@@ -27,15 +27,23 @@
             <label th:for="end_date">End date</label>
             <input type="text" th:field="${activity.end_date}"/>
 
-            <th:block th: each="activityType: ${activityTypes}">
+            <th:block th:each="activityType: ${activityTypes}">
                 <label>
-                    <input type="checkbox" name="activityTypes" th:value="{activityType.id}" />
-                    <span th:text="{activityType.name}"></span>
+                    <input type="checkbox" name="activityTypeIds" th:value="${activityType.id}" />
+                    <span th:text="${activityType.name}"></span>
                 </label>
+            </th:block>
 
-            <label th:for="operator">Operator</label>
-            <input type="text" th:field="${activity.operator}"/>
-
+            <div>
+                <label for="operator">Operator</label>
+                <select th:field="${activity.operators}">
+                    <option value="">Select an operator</option>
+                    <option th:each="operator:${operators}"
+                            th:value="operator.id"
+                            th:text="${operator}"
+                    ></option>
+                </select>
+            </div>
         </div>
         <button type='submit'>Add Activity</button>
     </form>

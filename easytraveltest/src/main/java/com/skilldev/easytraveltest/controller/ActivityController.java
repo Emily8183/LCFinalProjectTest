@@ -54,34 +54,31 @@ public class ActivityController {
     }
 
     @GetMapping("/add")
-    public String displayAddActivityForm(Model model, HttpSession session) {
-        List<Operator> operator = (List<Operator>) operatorRepository.findAll();
-        List<ActivityType> activityType = (List<ActivityType>) activityTypeRepository.findAll();
-        model.addAttribute("activity", new Activity());
-        model.addAttribute("activityType", activityType);
+    public String displayAddActivityForm(Model model) {
+        Activity newActivity = new Activity();
+        List<Operator> operators = (List<Operator>) operatorRepository.findAll();
+        List<ActivityType> activityTypes = (List<ActivityType>) activityTypeRepository.findAll();
+        model.addAttribute("activity", newActivity);
+        model.addAttribute("activityTypes", activityTypes);
+        model.addAttribute("operators", operators);
 
         return "activities/add";
     }
 
-    @PostMapping("/add")
-    public String processAddActivity(@ModelAttribute Activity newActivity, @RequestParam String activityType) {
-//        Integer userId = (Integer) session.getAttribute(userSessionKey);
-//        Optional<User> userOpt = userRepository.findById(userId);
-//
-//        if( userOpt.isPresent()) {
-//            newActivity.setUser(userOpt.get());
-//            activityRepository.save(newActivity);
-//        }
 
-        if(activityType != null) {
-            List<ActivityType> selectedActivityType = (List<ActivityType>) activityTypeRepository.findAll(activityType);
-            newActivity.setActivityType(selectedActivityType);
-
-        }
-        activityRepository.save(newActivity);
-        return "redirect:/activities";
-    }
-}
+//    @PostMapping("/add")
+//    public String processAddActivity(@ModelAttribute Activity newActivity, Model model) {
+////        if(activityTypeIds != null) {
+////            List<ActivityType> selectedActivityTypes = (List<ActivityType>) activityTypeRepository.findAllById(activityTypeIds);
+////            newActivity.setActivityTypes(selectedActivityTypes);
+////        }
+////        if{operatorIds != null) {
+////            List<Operator> selectedOperators = (List<Operator>) operatorRepository.findAllById(operatorIds);
+////            newActivity.setOperators(selectedOperators);
+////        }
+//        activityRepository.save(newActivity);
+//        return "redirect:/activities";
+//    }
 
 
 
@@ -123,3 +120,4 @@ public class ActivityController {
 //        activityRepository.deleteById(id);
 //        return "User with id " + id + " has been deleted successfully.";
 //    }
+}

@@ -16,6 +16,6 @@ public class WebApplicationConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor( authenticationFilter() );
+        registry.addInterceptor( authenticationFilter());
     }
 }

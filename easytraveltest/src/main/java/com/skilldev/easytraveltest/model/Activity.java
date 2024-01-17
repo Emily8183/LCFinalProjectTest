@@ -22,12 +22,11 @@ public class Activity extends AbstractEntity{
     @NotNull(message="Activity type is required")
     private List<ActivityType> activityTypes;
 
-    @ManyToOne
+    @ManyToMany
     @NotNull(message="Operator is required")
     private List<Operator> operators;
 
-    public Activity(User user, String event_name, String event_description, Float cost, String location, String start_date, String end_date, List<ActivityType> activityTypes, List<Operator> operators) {
-        this.user = user;
+    public Activity(String event_name, String event_description, Float cost, String location, String start_date, String end_date, List<ActivityType> activityTypes, List<Operator> operators) {
         this.event_name = event_name;
         this.event_description = event_description;
         this.cost = cost;
@@ -48,7 +47,6 @@ public class Activity extends AbstractEntity{
         this.user = user;
     }
 
-    @NotNull(message="Activity type is required.")
     public List<ActivityType> getActivityTypes() {
         return activityTypes;
     }

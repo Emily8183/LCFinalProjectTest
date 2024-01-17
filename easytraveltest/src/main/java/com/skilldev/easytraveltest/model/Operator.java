@@ -11,7 +11,7 @@ public class Operator extends AbstractEntity{
     private String name;
     private String email;
 
-    @OneToMany(mappedBy = "operator")
+    @ManyToMany (mappedBy = "operators")
     private final List<Activity> activities = new ArrayList<>();
 
 
