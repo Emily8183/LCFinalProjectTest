@@ -125,7 +125,10 @@ public class ActivityController {
 //                });
 //    }
 //
-//    @DeleteMapping("/activity/{id}")
+    @GetMapping("/delete")
+    public String displayDeleteActivityForm(Model model) {
+
+    }
 //    String deleteActivity(@PathVariable Long id) {
 //
 //        activityRepository.deleteById(id);
