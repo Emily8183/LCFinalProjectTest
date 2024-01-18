@@ -6,9 +6,11 @@ import com.skilldev.easytraveltest.repository.ActivityTypeRepository;
 import com.skilldev.easytraveltest.repository.OperatorRepository;
 import com.skilldev.easytraveltest.repository.UserRepository;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -56,8 +58,8 @@ public class ActivityController {
     @GetMapping("/add")
     public String displayAddActivityForm(Model model) {
         Activity newActivity = new Activity();
-        List<Operator> operators = (List<Operator>) operatorRepository.findAll();
-        List<ActivityType> activityTypes = (List<ActivityType>) activityTypeRepository.findAll();
+        List<Operator> operators = operatorRepository.findAll();
+        List<ActivityType> activityTypes = activityTypeRepository.findAll();
         model.addAttribute("activity", newActivity);
         model.addAttribute("activityTypes", activityTypes);
         model.addAttribute("operators", operators);
@@ -66,19 +68,28 @@ public class ActivityController {
     }
 
 
-//    @PostMapping("/add")
-//    public String processAddActivity(@ModelAttribute Activity newActivity, Model model) {
-////        if(activityTypeIds != null) {
-////            List<ActivityType> selectedActivityTypes = (List<ActivityType>) activityTypeRepository.findAllById(activityTypeIds);
-////            newActivity.setActivityTypes(selectedActivityTypes);
-////        }
-////        if{operatorIds != null) {
-////            List<Operator> selectedOperators = (List<Operator>) operatorRepository.findAllById(operatorIds);
-////            newActivity.setOperators(selectedOperators);
-////        }
-//        activityRepository.save(newActivity);
-//        return "redirect:/activities";
-//    }
+    @PostMapping("/add")
+    public String processAddActivity(@ModelAttribute @Valid Activity newActivity, @RequestParam(required = false) List<Integer> operatorIds, @RequestParam(required = false) List<Integer> activityTypeIds, Errors errors, Model model) {
+        if(errors.hasErrors()) {
+            System.out.println(errors.getAllErrors());
+            List<Operator> allOperators = operatorRepository.findAll();
+            List<ActivityType> allActivityTypes = activityTypeRepository.findAll();
+
+            model.addAttribute("operators", allOperators);
+            model.addAttribute("activityTypes", allActivityTypes);
+
+            return "activities/add";
+        } else {
+            if (operatorIds != null && activityTypeIds != null) {
+                List<Operator> selectedOperator = operatorRepository.findAllById(operatorIds);
+                List<ActivityType> selectedActivityType = activityTypeRepository.findAllById(activityTypeIds);
+                newActivity.setOperators(selectedOperator);
+                newActivity.setActivityTypes(selectedActivityType);
+            }
+        }
+        activityRepository.save(newActivity);
+        return "redirect:/activities";
+    }
 
 
 

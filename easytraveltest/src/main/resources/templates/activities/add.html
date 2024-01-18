@@ -32,6 +32,7 @@
                     <input type="checkbox" name="activityTypeIds" th:value="${activityType.id}" />
                     <span th:text="${activityType.name}"></span>
                 </label>
+                <p th:errors="${activity.activityTypes}"></p>
             </th:block>
 
             <div>
@@ -39,10 +40,11 @@
                 <select th:field="${activity.operators}">
                     <option value="">Select an operator</option>
                     <option th:each="operator:${operators}"
-                            th:value="operator.id"
-                            th:text="${operator}"
+                            th:value="${operator.id}"
+                            th:text="${operator.name}"
                     ></option>
                 </select>
+                <p th:errors="${activity.operators}"></p>
             </div>
         </div>
         <button type='submit'>Add Activity</button>

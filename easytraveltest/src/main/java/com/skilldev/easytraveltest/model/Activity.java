@@ -19,11 +19,9 @@ public class Activity extends AbstractEntity{
     private String end_date;
 
     @ManyToMany
-    @NotNull(message="Activity type is required")
     private List<ActivityType> activityTypes;
 
     @ManyToMany
-    @NotNull(message="Operator is required")
     private List<Operator> operators;
 
     public Activity(String event_name, String event_description, Float cost, String location, String start_date, String end_date, List<ActivityType> activityTypes, List<Operator> operators) {
@@ -109,5 +107,27 @@ public class Activity extends AbstractEntity{
 
     public void setEnd_date(String end_date) {
         this.end_date = end_date;
+    }
+
+    public String getFormattedOperators() {
+        StringBuilder operatorNames = new StringBuilder("");
+        for (int i=0; i < operators.size(); i++) {
+            operatorNames.append(operators.get(i).getName());
+            if (i < operators.size() - 1) {
+                operatorNames.append(", ");
+            }
+        }
+        return operatorNames.toString();
+    }
+
+    public String getFormattedActivityTypes() {
+        StringBuilder activityTypeNames = new StringBuilder("");
+        for (int i=0; i < activityTypes.size(); i++) {
+            activityTypeNames.append(activityTypes.get(i).getName());
+            if (i < activityTypes.size() - 1) {
+                activityTypeNames.append(", ");
+            }
+        }
+        return activityTypeNames.toString();
     }
 }
