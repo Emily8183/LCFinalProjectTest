@@ -9,7 +9,9 @@
         <form method="POST">
             <h3>Delete Activity</h3>
             <th:block th:each="activity : ${activities}">
-
+                <label>
+                    <input type="checkbox" name="activityIds" th:value="${activity.id}" />
+                </label>
 
             </th:block>
         </form>
