@@ -11,6 +11,7 @@
             <th:block th:each="activity : ${activities}">
                 <label>
                     <input type="checkbox" name="activityIds" th:value="${activity.id}" />
+                    <span th:text="${activity}"></span>
                 </label>
 
             </th:block>
