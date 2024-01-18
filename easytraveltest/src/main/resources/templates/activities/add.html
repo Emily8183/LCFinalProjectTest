@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Add more activities</title>
+</head>
+<body>
+<main>
+    <h1>Fill out the form and add more activities here</h1>
+    <form method="post">
+        <div>
+            <label th:for="event_name">Activity Name</label>
+            <input type="text" th:field="${activity.event_name}"/>
+
+            <label th:for="event_description">Event Description</label>
+            <input type="text" th:field="${activity.event_description}"/>
+
+            <label th:for="cost">Cost</label>
+            <input type="text" th:field="${activity.cost}"/>
+
+            <label th:for="location">Location</label>
+            <input type="text" th:field="${activity.location}"/>
+
+            <label th:for="start_date">Start date</label>
+            <input type="text" th:field="${activity.start_date}"/>
+
+            <label th:for="end_date">End date</label>
+            <input type="text" th:field="${activity.end_date}"/>
+
+            <th:block th:each="activityType: ${activityTypes}">
+                <label>
+                    <input type="checkbox" name="activityTypeIds" th:value="${activityType.id}" />
+                    <span th:text="${activityType.name}"></span>
+                </label>
+                <p th:errors="${activity.activityTypes}"></p>
+            </th:block>
+
+            <div>
+                <label for="operator">Operator</label>
+                <select th:field="${activity.operators}">
+                    <option value="">Select an operator</option>
+                    <option th:each="operator:${operators}"
+                            th:value="${operator.id}"
+                            th:text="${operator.name}"
+                    ></option>
+                </select>
+                <p th:errors="${activity.operators}"></p>
+            </div>
+        </div>
+        <button type='submit'>Add Activity</button>
+    </form>
+
+</main>
+
+</body>
+</html>

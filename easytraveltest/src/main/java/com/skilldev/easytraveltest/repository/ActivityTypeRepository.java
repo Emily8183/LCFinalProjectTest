@@ -1,10 +1,10 @@
 package com.skilldev.easytraveltest.repository;
 
-import com.skilldev.easytraveltest.model.Comment;
+import com.skilldev.easytraveltest.model.ActivityType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CommentRepository extends JpaRepository<Comment, Integer> {
+public interface ActivityTypeRepository extends JpaRepository<ActivityType, Integer> {
 
 }

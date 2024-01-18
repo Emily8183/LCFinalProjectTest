@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Delete Activity Page</title>
+</head>
+<body>
+    <main>
+        <form method="POST">
+            <h3>Delete Activity</h3>
+            <th:block th:each="activity : ${activities}">
+                <label>
+                    <input type="checkbox" name="activityIds" th:value="${activity.id}" />
+                    <span th:text="${activity.event_name}"></span>
+                </label>
+            </th:block>
+            <button class="delete" type="submit">Delete Activity</button>
+        </form>
+    </main>
+
+</body>
+</html>

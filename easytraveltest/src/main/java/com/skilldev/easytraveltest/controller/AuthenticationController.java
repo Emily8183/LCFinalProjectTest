@@ -89,10 +89,8 @@ public class AuthenticationController {
     }
 
     @GetMapping("/login")
-//    public String displayLoginForm(Model model, HttpSession session) {
     public String displayLoginForm(Model model) {
         model.addAttribute(new LoginFormDTO());
-//        model.addAttribute("loggedIn", session.getAttribute("user") != null);
         return "login";
     }
 
@@ -121,9 +119,11 @@ public class AuthenticationController {
         return "login_success";
     }
 
-    @GetMapping("/logout")
-    public String logout(HttpServletRequest request) {
-        request.getSession().invalidate();
-        return "redirect:/login";
-    }
+    //TODO: add "logout" button
+
+//    @GetMapping("/logout")
+//    public String logout(HttpServletRequest request) {
+//        request.getSession().invalidate();
+//        return "redirect:/login";
+//    }
 }

@@ -1,11 +1,16 @@
 package com.skilldev.easytraveltest.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+
+import java.util.List;
 
 
 @Entity
 public class Activity extends AbstractEntity{
 
+    @ManyToOne
+    private User user;
     private String event_name;
     private String event_description;
     private Float cost;
@@ -13,16 +18,48 @@ public class Activity extends AbstractEntity{
     private String start_date;
     private String end_date;
 
-    @ManyToOne
-    @JoinColumn(name= "group_id", nullable = false)
-    private Group group;
+    @ManyToMany
+    //TODO: Can I set validation to a list?
+    private List<ActivityType> activityTypes;
 
-    public Group getGroup() {
-        return group;
+    @ManyToMany
+    private List<Operator> operators;
+
+    public Activity(String event_name, String event_description, Float cost, String location, String start_date, String end_date, List<ActivityType> activityTypes, List<Operator> operators) {
+        this.event_name = event_name;
+        this.event_description = event_description;
+        this.cost = cost;
+        this.location = location;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.activityTypes = activityTypes;
+        this.operators = operators;
     }
 
-    public void setGroup(Group group) {
-        this.group = group;
+    public Activity() {}
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<ActivityType> getActivityTypes() {
+        return activityTypes;
+    }
+
+    public void setActivityTypes(List<ActivityType> activityTypes) {
+        this.activityTypes = activityTypes;
+    }
+
+    public List<Operator> getOperators() {
+        return operators;
+    }
+
+    public void setOperators(List<Operator> operators) {
+        this.operators = operators;
     }
 
     public String getEvent_name() {
@@ -71,5 +108,27 @@ public class Activity extends AbstractEntity{
 
     public void setEnd_date(String end_date) {
         this.end_date = end_date;
+    }
+
+    public String getFormattedOperators() {
+        StringBuilder operatorNames = new StringBuilder("");
+        for (int i=0; i < operators.size(); i++) {
+            operatorNames.append(operators.get(i).getName());
+            if (i < operators.size() - 1) {
+                operatorNames.append(", ");
+            }
+        }
+        return operatorNames.toString();
+    }
+
+    public String getFormattedActivityTypes() {
+        StringBuilder activityTypeNames = new StringBuilder("");
+        for (int i=0; i < activityTypes.size(); i++) {
+            activityTypeNames.append(activityTypes.get(i).getName());
+            if (i < activityTypes.size() - 1) {
+                activityTypeNames.append(", ");
+            }
+        }
+        return activityTypeNames.toString();
     }
 }

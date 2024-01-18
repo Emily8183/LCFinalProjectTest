@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>List of Activities</title>
+</head>
+<body>
+    <main>
+        <h1>List of Activities</h1>
+
+        <th:block>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Event Name</th>
+                        <th>Event description</th>
+                        <th>Cost</th>
+                        <th>Location</th>
+                        <th>Start_date</th>
+                        <th>End_date</th>
+                        <th>Activity Type</th>
+                        <th>Group/Organizer</th>
+                    </tr>
+                </thead>
+                    <tr th:each="activity: ${activities}">
+                        <td><a th:href="${'/activities/details/' + activity.id}" th:text="${activity.event_name}"></a></td>
+                        <td th:text="${activity.event_description}"></td>
+                        <td th:text="${activity.cost}"></td>
+                        <td th:text="${activity.location}"></td>
+                        <td th:text="${activity.start_date}"></td>
+                        <td th:text="${activity.end_date}"></td>
+                        <td th:text="${activity.getFormattedActivityTypes()}"></td>
+                        <td th:text="${activity.getFormattedOperators()}"></td>
+                    </tr>
+            </table>
+        </th:block>
+
+        <button type="submit"><a href="/activities/add">Add activity</a></button>
+        <button type="submit"><a href="/activities/delete">Delete activity</a></button>
+    </main>
+
+</body>
+</html>
