@@ -130,6 +130,10 @@ public class ActivityController {
         model.addAttribute("activities",activityRepository.findAll());
         return "activities/delete";
     }
+
+    @PostMapping("/delete")
+
+
 //    String deleteActivity(@PathVariable Long id) {
 //
 //        activityRepository.deleteById(id);
