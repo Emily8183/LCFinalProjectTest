@@ -11,7 +11,7 @@
             <th:block th:each="activity : ${activities}">
                 <label>
                     <input type="checkbox" name="activityIds" th:value="${activity.id}" />
-                    <span th:text="${activity}"></span>
+                    <span th:text="${activity.event_name}"></span>
                 </label>
             </th:block>
             <button class="delete" type="submit">Delete Activity</button>
