@@ -91,40 +91,17 @@ public class ActivityController {
         return "redirect:/activities";
     }
 
-
-
-//    @PostMapping("")
-//    public String Activity(@RequestBody Activity newActivity) {
-////        return activityRepository.save(newActivity);
-////
-//
-//
-//
-//    @GetMapping("/activity/{id}")
-//    Optional<Activity> getActivityById(@PathVariable Long id) {
-//        return activityRepository.findById(id);
-//    }
-//
-//    @GetMapping("/activities/group/{id}")
-//    List<Activity> getAllGroups(@PathVariable Long id) {return activityRepository.findByGroupId(id);
-//    }
-//
-//
-//    @PutMapping("/activity/{id}")
-//    Optional<Activity> updateActivity(@RequestBody Activity newActivity, @PathVariable Long id){
-//        return activityRepository.findById(id)
-//                .map(activity -> {
-//                    activity.setEvent_name(newActivity.getEvent_name());
-//                    activity.setEvent_description(newActivity.getEvent_description());
-//                    activity.setLocation(newActivity.getLocation());
-//                    activity.setCost(newActivity.getCost());
-//                    activity.setStart_date(newActivity.getStart_date());
-//                    activity.setEnd_date(newActivity.getEnd_date());
-//                    activity.setGroup(newActivity.getGroup());
-//                    return activityRepository.save(activity);
-//                });
-//    }
-//
+    @GetMapping("/details/{activityId}")
+    public String displayActivityDetailsPage(@PathVariable int activityId, Model model) {
+      Optional<Activity> result = activityRepository.findById(activityId);
+        if (result.isPresent()) {
+            Activity activity= result.get();
+            model.addAttribute("activity", activity);
+            return "activities/details";
+        } else {
+            return "activities/index";
+        }
+    }
     @GetMapping("/delete")
     public String displayDeleteActivityForm(Model model) {
         model.addAttribute("activities",activityRepository.findAll());
