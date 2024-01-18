@@ -132,6 +132,11 @@ public class ActivityController {
     }
 
     @PostMapping("/delete")
+    public String processDeleteActivityForm(@RequestParam(required = false) int[] activityIds) {
+        for (int id:activityIds) {
+            activityRepository.deleteById(id);
+        }
+    }
 
 
 //    String deleteActivity(@PathVariable Long id) {
