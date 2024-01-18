@@ -136,6 +136,7 @@ public class ActivityController {
         for (int id:activityIds) {
             activityRepository.deleteById(id);
         }
+        return "redirect:/activities";
     }
 
 
