@@ -128,7 +128,7 @@ public class ActivityController {
     @GetMapping("/delete")
     public String displayDeleteActivityForm(Model model) {
         model.addAttribute("activities",activityRepository.findAll());
-
+        return "activities/delete";
     }
 //    String deleteActivity(@PathVariable Long id) {
 //
