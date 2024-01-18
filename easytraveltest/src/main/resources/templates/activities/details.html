@@ -7,7 +7,39 @@
 <body>
 
     <h2>Activity Details</h2>
-    <h4 th:text="${activity.event_name}"></h4>
+    <h2 th:text="${activity.event_name}"></h2>
 
+    <h3>Description</h3>
+    <p th:text="${activity.event_description}"></p>
+
+    <h3>Cost</h3>
+    <p th:text="${activity.cost}"></p>
+
+    <h3>Location</h3>
+    <p th:text="${activity.location}"></p>
+
+    <h3>Start Date</h3>
+    <p th:text="${activity.start_date}"></p>
+
+    <h3>End Date</h3>
+    <p th:text="${activity.end_date}"></p>
+
+<!--    <h3>Activity Type</h3>-->
+<!--    <p th:text="${activity.activityType}"></p>-->
+
+    <h2>Any comments regarding this activity? Please leave here!</h2>
+
+    <div th:each="comment:${comments}">
+        <p th:text="${comment.text}"></p>
+    </div>
+
+    <form method="POST">
+        <div>
+            <label th:for="text">Leave your comments</label>
+            <input th:value="${newComment.text}" id="text" name="text"/>
+        </div>
+
+        <button type="Submit">Save</button>
+    </form>
 </body>
 </html>

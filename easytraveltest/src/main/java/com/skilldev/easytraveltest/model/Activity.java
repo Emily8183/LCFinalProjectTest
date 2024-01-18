@@ -19,6 +19,7 @@ public class Activity extends AbstractEntity{
     private String end_date;
 
     @ManyToMany
+    //TODO: Can I set validation to a list?
     private List<ActivityType> activityTypes;
 
     @ManyToMany

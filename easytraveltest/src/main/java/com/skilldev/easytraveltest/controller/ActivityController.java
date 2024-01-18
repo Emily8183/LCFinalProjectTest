@@ -1,10 +1,7 @@
 package com.skilldev.easytraveltest.controller;
 
 import com.skilldev.easytraveltest.model.*;
-import com.skilldev.easytraveltest.repository.ActivityRepository;
-import com.skilldev.easytraveltest.repository.ActivityTypeRepository;
-import com.skilldev.easytraveltest.repository.OperatorRepository;
-import com.skilldev.easytraveltest.repository.UserRepository;
+import com.skilldev.easytraveltest.repository.*;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +18,9 @@ import java.util.Optional;
 public class ActivityController {
 
     @Autowired
+    CommentRepository commentRepository;
+
+    @Autowired
     private ActivityRepository activityRepository;
 
     @Autowired
@@ -32,7 +32,7 @@ public class ActivityController {
     @Autowired
     private UserRepository userRepository;
 
-//    private static final String userSessionKey = "user";
+    private static final String userSessionKey = "user";
 
     @GetMapping("")
     public String displayActivities(@RequestParam(required = false) Integer operatorId, @RequestParam(required = false) Integer activityTypeId, Model model) {
@@ -96,12 +96,31 @@ public class ActivityController {
       Optional<Activity> result = activityRepository.findById(activityId);
         if (result.isPresent()) {
             Activity activity= result.get();
+            List<Comment> comments = commentRepository.findAll();
+            Comment newComment = new Comment();
+            model.addAttribute("comments", comments);
+            model.addAttribute("newComment", newComment);
             model.addAttribute("activity", activity);
             return "activities/details";
         } else {
             return "activities/index";
         }
     }
+
+    @PostMapping("/details/{activityId}")
+    public String addCommentToDetails(@ModelAttribute Comment newComment, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        Optional<User> userOpt = userRepository.findById(userId);
+
+        if( userOpt.isPresent()) {
+            newComment.setUser(userOpt.get());
+            commentRepository.save(newComment);
+        }
+
+        return "redirect:/activities/details/{activityId}";
+    }
+
+
     @GetMapping("/delete")
     public String displayDeleteActivityForm(Model model) {
         model.addAttribute("activities",activityRepository.findAll());
@@ -115,11 +134,4 @@ public class ActivityController {
         }
         return "redirect:/activities";
     }
-
-
-//    String deleteActivity(@PathVariable Long id) {
-//
-//        activityRepository.deleteById(id);
-//        return "User with id " + id + " has been deleted successfully.";
-//    }
 }
